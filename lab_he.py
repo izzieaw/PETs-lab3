@@ -149,9 +149,10 @@ def corrupt_pub_key(params: Params, priv: Integer, other_pub_keys: list[ECC.EccP
     public key corresponding to a private key known to the corrupt authority."""
     g, h, o = params
 
-    # TODO: ADD CODE HERE
-    ...
-    pub = ...
+    group_pub_others = gen_group_key(params, other_pub_keys)
+    group_pub_others_minus = -group_pub_others
+    group_pub = g * priv
+    pub = group_pub + group_pub_others_minus
 
     return pub
 
