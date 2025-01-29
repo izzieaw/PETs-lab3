@@ -164,10 +164,10 @@ def encode_vote(params: Params, pub: PubKey, vote: int) -> tuple[CipherText, Cip
     """Given a vote 0 or 1, encode the vote as two ciphertexts representing the count of votes for zero and the votes for one."""
     assert vote in [0, 1]
 
-    # TODO: ADD CODE HERE
-    ...
-    v0 = ...
-    v1 = ...
+    # if v=0, v0count=1, v1count=0
+    # if v=1, v0count=0, v1count=1
+    v0 = encrypt(params, pub, 1-vote)
+    v1 = encrypt(params, pub, vote)
 
     return v0, v1
 

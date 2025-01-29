@@ -110,7 +110,7 @@ def test_partial():
 
 @pytest.mark.task4
 def test_bad_pub():
-    params = setup()
+    params = setup() 
     g, h, o = params
 
     # Four authorities generate keys
