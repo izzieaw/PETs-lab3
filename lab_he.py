@@ -164,8 +164,8 @@ def encode_vote(params: Params, pub: PubKey, vote: int) -> tuple[CipherText, Cip
     """Given a vote 0 or 1, encode the vote as two ciphertexts representing the count of votes for zero and the votes for one."""
     assert vote in [0, 1]
 
-    # if v=0, v0count=1, v1count=0
-    # if v=1, v0count=0, v1count=1
+    # if vote=0, v0count=1, v1count=0
+    # if vote=1, v0count=0, v1count=1
     v0 = encrypt(params, pub, 1-vote)
     v1 = encrypt(params, pub, vote)
 
@@ -176,10 +176,18 @@ def process_votes(params: Params, pub: PubKey, encrypted_votes: list[tuple[Ciphe
     """Given a list of encrypted votes tally them to sum votes for zeros and votes for ones."""
     assert isinstance(encrypted_votes, list)
 
-    # TODO: ADD CODE HERE
-    ...
-    tv0 = ...
-    tv1 = ...
+    enc_zeros = [vote[0] for vote in encrypted_votes]
+    enc_ones = [vote[1] for vote in encrypted_votes]
+
+    zeros = enc_zeros[0]
+    for vote in enc_zeros[1:]:
+        zeros = add(params, pub, zeros, vote)
+
+    ones = enc_ones[0]
+    for vote in enc_ones[1:]:
+        ones = add(params, pub, ones, vote)
+    tv0 = zeros
+    tv1 = ones
 
     return tv0, tv1
 
