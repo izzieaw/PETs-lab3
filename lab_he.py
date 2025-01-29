@@ -61,7 +61,7 @@ def _point_to_bytes(p: ECC.EccPoint) -> bytes:
 
 _logh = None
 
-
+# logh() function calculates discrete log for an additive group: finds m s.t. h*m=hm, generator h
 def logh(params: Params, hm: ECC.EccPoint) -> Integer:
     """Compute a discrete log, for small number only"""
     global _logh
@@ -92,18 +92,22 @@ def decrypt(params: Params, priv: PrivKey, ciphertext: CipherText) -> Integer:
 def add(params: Params, pub: PubKey, c1: CipherText, c2: CipherText) -> CipherText:
     """Given two ciphertexts compute the ciphertext of the sum of their plaintexts."""
 
-    # TODO: ADD CODE HERE
-    ...
-    c3 = ...
+    a1, b1 = c1
+    a2, b2 = c2
+
+    a3 = a1 + a2
+    b3 = b1 + b2
+    c3 = a3, b3
     return c3
 
 
 def mul(params: Params, pub: PubKey, c1: CipherText, alpha: int) -> CipherText:
     """Given a ciphertext compute the ciphertext of the product of the plaintext times alpha"""
 
-    # TODO: ADD CODE HERE
-    ...
-    c3 = ...
+    a, b = c1
+    a3 = a * alpha
+    b3 = b * alpha
+    c3 = a, b
     return c3
 
 
