@@ -49,7 +49,10 @@ def encrypt(params: Params, pub: PubKey, m: int) -> CipherText:
     g, h, o = params
     k = Integer.random_range(min_inclusive=0, max_exclusive=o)
     c1 = k * g
-    c2 = k * pub + m * h
+    if pub + m < 0:
+        ...
+    else:
+        c2 = k * pub + m * h
     c = c1, c2
     return c
 
