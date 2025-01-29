@@ -48,12 +48,9 @@ def encrypt(params: Params, pub: PubKey, m: int) -> CipherText:
 
     g, h, o = params
     k = Integer.random_range(min_inclusive=0, max_exclusive=o)
-    c1 = k * g
-    if pub + m < 0:
-        ...
-    else:
-        c2 = k * pub + m * h
-    c = c1, c2
+    a = k * g 
+    b = k * pub + (m % o) * h
+    c = a, b
     return c
 
 
@@ -83,10 +80,9 @@ def logh(params: Params, hm: ECC.EccPoint) -> Integer:
 
 
 def decrypt(params: Params, priv: PrivKey, ciphertext: CipherText) -> Integer:
-    # TODO: ADD CODE HERE
-    ...
-    hm = ...
-
+    a, b = ciphertext
+    aminus = -a
+    hm = b + aminus*priv
     return logh(params, hm)
 
 
