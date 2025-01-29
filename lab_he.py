@@ -118,9 +118,10 @@ def mul(params: Params, pub: PubKey, c1: CipherText, alpha: int) -> CipherText:
 def gen_group_key(params: Params, pub_keys: list[PubKey]):
     """Generate a group public key from a list of public keys"""
 
-    # TODO: ADD CODE HERE
-    ...
-    pub = ...
+    sum = pub_keys[0]
+    for pub_key in pub_keys[1:]:
+        sum = sum + pub_key
+    pub = sum 
 
     return pub
 
