@@ -130,10 +130,9 @@ def partial_decrypt(params: Params, priv: PrivKey, ciphertext: CipherText, final
     """Given a ciphertext and a private key, perform partial decryption.
     If final is True, then return the plaintext."""
 
-    # TODO: ADD CODE HERE
-    ...
-    a1 = ...
-    b1 = ...
+    a1, b = ciphertext
+    aminus = -a1
+    b1 = b + aminus*priv
 
     if final:
         return logh(params, b1)
