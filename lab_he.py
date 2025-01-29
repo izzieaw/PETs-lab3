@@ -107,7 +107,7 @@ def mul(params: Params, pub: PubKey, c1: CipherText, alpha: int) -> CipherText:
     a, b = c1
     a3 = a * alpha
     b3 = b * alpha
-    c3 = a, b
+    c3 = a3, b3
     return c3
 
 
