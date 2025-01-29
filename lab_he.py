@@ -36,10 +36,8 @@ def setup() -> Params:
 def key_gen(params: Params) -> tuple[PrivKey, PubKey]:
     g, h, o = params
 
-    # TODO: ADD CODE HERE
-    ...
-    priv = ...
-    pub = ...
+    priv = Integer.random_range(min_inclusive=1, max_exclusive=o)
+    pub = priv * g
     return priv, pub
 
 
@@ -49,9 +47,10 @@ def encrypt(params: Params, pub: PubKey, m: int) -> CipherText:
         raise Exception("Message value too low or high.")
 
     g, h, o = params
-    # TODO: ADD CODE HERE
-    ...
-    c = ...
+    k = Integer.random_range(min_inclusive=0, max_exclusive=o)
+    c1 = k * g
+    c2 = k * pub + m * h
+    c = c1, c2
     return c
 
 
