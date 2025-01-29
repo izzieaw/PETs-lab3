@@ -238,7 +238,13 @@ def simulate_poll(votes: list[int]) -> tuple[Integer, Integer]:
 # What is the advantage of the adversary in guessing b given your implementation of Homomorphic addition?
 # What are the security implications of this?
 
-""" TODO: Your Answer here """
+""" In this implementation of homomorphic addition, C = Enc(m1 + m2) = Enc(m1) + Enc(m2). Therefore, the adversary can simply compute C - Cb, 
+    which will equal Ca if b=0 or Cc if b=1. As long as the adversary knows which value of b corresponds to the encryption of which ciphertext
+    plus Cb, the adversary can successfully compute b i.e. always guess correctly.
+     
+    Security implications of this include how the adversary can observe & exploit patterns in ciphertext manipulations, thanks to the homomorphic property,
+    undermining the security of this scheme and potentially aiding the adversary to work out the encryption algorithm. 
+"""
 
 ###########################################################
 # TASK Q2 -- Answer questions regarding your implementation
