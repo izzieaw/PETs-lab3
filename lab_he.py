@@ -254,4 +254,13 @@ def simulate_poll(votes: list[int]) -> tuple[Integer, Integer]:
 # (b) manipulate the poll so that it yields an arbitrary result.
 # Can those malicious actions be detected given your implementation?
 
-""" TODO: Your Answer here """
+""" (a) To disrupt the poll so that it yields no result, a malicious user could modify my code by, after the assertion line, manipulating the 
+    'vote' parameter to transform it into a different parameter type e.g. a string (i.e. a non-integer).
+    (b) To manipulate the poll so that it yields an arbitrary result, a malicious user could generate a random number between 0 and 1, i.e.
+    either a 0 or a 1, and xor this with the variable 'vote' in order to produce a new random 'vote' value, before calculating the values 
+    v0 and v1 as in my implementation, with this xor'd value as the new 'vote' value in the encryption. 
+    
+    An honest party in the protocol cannot detect if these actions are malicious or not, as the function encode_vote outputs 2 ciphertexts,
+    so an honest party cannot tell if the plaintext contents have been manipulated, as they have been encrypted.
+    
+    """
